@@ -23,12 +23,12 @@ public class Prodotto {
 		this.nome = nome;
 	}
 
-	public String getID() {
-		return ID;
+	public int getID() {
+		return id;
 	}
 
-	public void setID(String iD) {
-		ID = iD;
+	public void setID(int id) {
+		id = id;
 	}
 
 	public double getPrezzo() {
