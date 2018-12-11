@@ -3,7 +3,6 @@ public class Prodotto {
 	private  int id;
 	private double prezzo;
 	private int quantita;
-	private char mammella;
 	
 	
 	public Prodotto() {
