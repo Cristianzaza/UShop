@@ -7,17 +7,23 @@ import java.awt.Font;
 import javax.swing.DropMode;
 import javax.swing.JPanel;
 import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import java.awt.Color;
+import javax.swing.JTextField;
 
 public class ushopGUI {
 
 	private JFrame frmUshopShoppingList;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		Lista nuovaLista = new Lista();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -60,6 +66,10 @@ public class ushopGUI {
 		
 		JButton btnAggiungiProdotto = new JButton("Aggiungi Prodotto");
 		frmUshopShoppingList.getContentPane().add(btnAggiungiProdotto, BorderLayout.CENTER);
+		/*btnComeSiGioca.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				switchPanels(panelComesigioca);
+			}*/
 		
 		JButton btnMostraLista = new JButton("Mostra Lista");
 		frmUshopShoppingList.getContentPane().add(btnMostraLista, BorderLayout.WEST);
@@ -67,8 +77,9 @@ public class ushopGUI {
 		JButton btnRimuoviProdotto = new JButton("Rimuovi Prodotto");
 		frmUshopShoppingList.getContentPane().add(btnRimuoviProdotto, BorderLayout.EAST);
 		
-		JButton btnEsci = new JButton("Esci");
-		frmUshopShoppingList.getContentPane().add(btnEsci, BorderLayout.SOUTH);
+		textField = new JTextField();
+		frmUshopShoppingList.getContentPane().add(textField, BorderLayout.SOUTH);
+		textField.setColumns(10);
 	}
 
 }
