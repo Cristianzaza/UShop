@@ -11,6 +11,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
+
 import java.awt.Color;
 import javax.swing.JTextField;
 
@@ -66,16 +68,33 @@ public class ushopGUI {
 		
 		JButton btnAggiungiProdotto = new JButton("Aggiungi Prodotto");
 		frmUshopShoppingList.getContentPane().add(btnAggiungiProdotto, BorderLayout.CENTER);
-		/*btnComeSiGioca.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				switchPanels(panelComesigioca);
-			}*/
+		btnAggiungiProdotto.addActionListener(new ActionListener()
+		{
+		  public void actionPerformed(ActionEvent e)
+		  {
+			//nuovaLista.aggiungiProdotto(textField.getText());
+		    JDialog d = new JDialog(frmUshopShoppingList, "Aggiunto", true);
+		    d.setLocationRelativeTo(frmUshopShoppingList);
+		    d.setVisible(true);
+		  }
+		});
 		
 		JButton btnMostraLista = new JButton("Mostra Lista");
 		frmUshopShoppingList.getContentPane().add(btnMostraLista, BorderLayout.WEST);
 		
+		
 		JButton btnRimuoviProdotto = new JButton("Rimuovi Prodotto");
 		frmUshopShoppingList.getContentPane().add(btnRimuoviProdotto, BorderLayout.EAST);
+		btnRimuoviProdotto.addActionListener(new ActionListener()
+		{
+		  public void actionPerformed(ActionEvent e)
+		  {
+			//nuovaLista.rimuoviProdotto(textField.getText());          
+		    JDialog d = new JDialog(frmUshopShoppingList, "Rimosso", true);
+		    d.setLocationRelativeTo(frmUshopShoppingList);
+		    d.setVisible(true);
+		  }
+		});
 		
 		textField = new JTextField();
 		frmUshopShoppingList.getContentPane().add(textField, BorderLayout.SOUTH);

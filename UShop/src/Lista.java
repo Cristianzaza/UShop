@@ -24,6 +24,16 @@ public class Lista {
         }
 	}
 	
+	public void rimuoviProdotto2(String nomeArticolo) {
+		//Scanner in = new Scanner(System.in);
+		//System.out.println("Inserire il nome del prodotto da eliminare");
+		//String nomeArticolo = in.nextLine();
+		Prodotto prodDelete = new Prodotto(nomeArticolo);
+		for (int i=0; i < list.size(); i++) {
+			if(list.get(i).getNome().equalsIgnoreCase(prodDelete.getNome()))
+              	list.remove(i);
+        }
+	}
 	public void visualizzaLista(){
         System.out.println( list.size()+ " articoli. ");
            for (Prodotto x : list) {
