@@ -1,16 +1,19 @@
 import java.awt.EventQueue;
-
+import java.sql.*;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+
+import com.mysql.cj.util.TimeUtil;
+
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JSeparator;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
+import javax.sql.rowset.JdbcRowSet;
 public class LoginUShop {
 
 	private JFrame frame;
@@ -101,6 +104,31 @@ public class LoginUShop {
 			public void actionPerformed(ActionEvent e) {
 				textUsername.setText(null);
 				textPassword.setText(null);
+				try {
+					 // Carichiamo un driver di tipo 1 (bridge jdbc-odbc)
+					         String driver = "com.mysql.cj.jdbc.Driver";
+					 // Creiamo la stringa di connessione
+					         String url = "jdbc:mysql://localhost:3306/uShop";
+					 // Otteniamo una connessione con username e password
+					        Connection con =
+					        DriverManager.getConnection (url, "root", "adminushop04");
+					 // Creiamo un oggetto Statement per poter interrogare il db
+					        Statement cmd = con.createStatement ();
+					 // Eseguiamo una query e immagazziniamone i risultati
+					 // in un oggetto ResultSet
+					        String qry = "SELECT * FROM login";
+					        ResultSet res = cmd.executeQuery(qry);
+					 // Stampiamone i risultati riga per riga
+					       while (res.next()) {
+					       System.out.println(res.getString("email"));
+					        System.out.println(res.getString("password"));
+					      }
+					      res.close();
+					      cmd.close();
+					      con.close();
+					    } catch (SQLException e1) {
+					         e1.printStackTrace();
+					    }
 			}
 		});
 		btnReset.setBounds(288, 215, 97, 25);
