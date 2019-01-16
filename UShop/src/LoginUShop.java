@@ -3,6 +3,7 @@ import java.sql.*;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import com.mysql.cj.util.TimeUtil;
@@ -12,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JSeparator;
 import java.awt.event.ActionListener;
+import java.nio.channels.ShutdownChannelGroupException;
 import java.awt.event.ActionEvent;
 import javax.sql.rowset.JdbcRowSet;
 public class LoginUShop {
@@ -80,30 +82,6 @@ public class LoginUShop {
 				String username = textUsername.getText();
 				textUsername.setText(null);
 				textPassword.setText(null);
-				if (username.equalsIgnoreCase("corado") && password.contentEquals("paluk")) {
-				JOptionPane.showMessageDialog(null, "Login effettuato con successo", "Login effettuato", JOptionPane.PLAIN_MESSAGE);
-				}
-				else {
-					JOptionPane.showMessageDialog(null, "Username o password errati", "Login fallito", JOptionPane.ERROR_MESSAGE);
-				}
-			}
-		});
-		btnLogin.setBounds(143, 203, 116, 37);
-		frame.getContentPane().add(btnLogin);
-		
-		JSeparator separator = new JSeparator();
-		separator.setBounds(43, 188, 342, 2);
-		frame.getContentPane().add(separator);
-		
-		JSeparator separator_1 = new JSeparator();
-		separator_1.setBounds(43, 43, 342, 2);
-		frame.getContentPane().add(separator_1);
-		
-		JButton btnReset = new JButton("Reset");
-		btnReset.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				textUsername.setText(null);
-				textPassword.setText(null);
 				try {
 					 // Carichiamo un driver di tipo 1 (bridge jdbc-odbc)
 					         String driver = "com.mysql.cj.jdbc.Driver";
@@ -119,10 +97,17 @@ public class LoginUShop {
 					        String qry = "SELECT * FROM login";
 					        ResultSet res = cmd.executeQuery(qry);
 					 // Stampiamone i risultati riga per riga
-					       while (res.next()) {
-					       System.out.println(res.getString("email"));
-					        System.out.println(res.getString("password"));
+					        int flag=0;
+					        while (res.next()) {
+					    	   if (username.equalsIgnoreCase(res.getString("email")) && password.contentEquals(res.getString("password"))) {
+									JOptionPane.showMessageDialog(null, "Login effettuato con successo", "Login effettuato", JOptionPane.PLAIN_MESSAGE);
+									flag=1;
+									break;
+					    	   }
 					      }
+					       if(flag==0){
+								JOptionPane.showMessageDialog(null, "Username o password errati", "Login fallito", JOptionPane.ERROR_MESSAGE);
+							}
 					      res.close();
 					      cmd.close();
 					      con.close();
@@ -131,7 +116,36 @@ public class LoginUShop {
 					    }
 			}
 		});
-		btnReset.setBounds(288, 215, 97, 25);
+		btnLogin.setBounds(143, 203, 133, 37);
+		frame.getContentPane().add(btnLogin);
+		
+		JSeparator separator = new JSeparator();
+		separator.setBounds(43, 188, 342, 2);
+		frame.getContentPane().add(separator);
+		
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setBounds(43, 43, 342, 2);
+		frame.getContentPane().add(separator_1);
+		
+		JButton btnReset = new JButton("Reset");
+		btnReset.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textUsername.setText(null);
+				textPassword.setText(null);
+				
+			}
+		});
+		btnReset.setBounds(288, 215, 116, 25);
 		frame.getContentPane().add(btnReset);
+		
+		JButton btnRegistrati = new JButton("Registrati");
+		btnRegistrati.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Registrazione regis = new Registrazione();	
+				regis.frame.setVisible(true);
+			}
+		});
+		btnRegistrati.setBounds(12, 215, 119, 25);
+		frame.getContentPane().add(btnRegistrati);
 	}
 }
