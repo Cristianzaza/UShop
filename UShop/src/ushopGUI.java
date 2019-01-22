@@ -1,11 +1,14 @@
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTextPane;
 import java.awt.BorderLayout;
 import java.awt.Font;
 import javax.swing.DropMode;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,12 +23,12 @@ public class ushopGUI {
 
 	private JFrame frmUshopShoppingList;
 	private JTextField textField;
+	Lista nuovaLista = new Lista();
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		Lista nuovaLista = new Lista();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -72,7 +75,7 @@ public class ushopGUI {
 		{
 		  public void actionPerformed(ActionEvent e)
 		  {
-			//nuovaLista.aggiungiProdotto(textField.getText());
+			nuovaLista.aggiungiProdotto2(textField.getText());
 		    JDialog d = new JDialog(frmUshopShoppingList, "Aggiunto", true);
 		    d.setLocationRelativeTo(frmUshopShoppingList);
 		    d.setVisible(true);
@@ -80,6 +83,11 @@ public class ushopGUI {
 		});
 		
 		JButton btnMostraLista = new JButton("Mostra Lista");
+		btnMostraLista.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				mostraListaDial mostra1 = new mostraListaDial(nuovaLista);
+			}
+		});
 		frmUshopShoppingList.getContentPane().add(btnMostraLista, BorderLayout.WEST);
 		
 		
@@ -89,7 +97,7 @@ public class ushopGUI {
 		{
 		  public void actionPerformed(ActionEvent e)
 		  {
-			//nuovaLista.rimuoviProdotto(textField.getText());          
+			nuovaLista.rimuoviProdotto2(textField.getText());          
 		    JDialog d = new JDialog(frmUshopShoppingList, "Rimosso", true);
 		    d.setLocationRelativeTo(frmUshopShoppingList);
 		    d.setVisible(true);
