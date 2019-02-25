@@ -11,51 +11,51 @@ public class Lista extends JList<Prodotto>{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	ArrayList <Prodotto> list = new ArrayList <Prodotto> ();
-	private Scanner in;
-	private Scanner in2;
+	ArrayList <Prodotto> list;
 	
-	public void aggiungiProdotto() {
-		in = new Scanner(System.in);
-		System.out.println("Inserisci il nome del prodotto");
-		String nomeArticolo = in.nextLine();
-		Prodotto articolo = new Prodotto(nomeArticolo);
-		list.add(articolo);
-		}
-	public void aggiungiProdotto2(String nomeArticolo) {
-		//Scanner in = new Scanner(System.in);
-	//	System.out.println("Inserisci il nome del prodotto");
-		//String nomeArticolo = in.nextLine();
-		Prodotto articolo = new Prodotto(nomeArticolo);
-		list.add(articolo);
-		}
+	public Lista() {
+		list = new ArrayList <Prodotto> ();	
+	}
 	
-	public void rimuoviProdotto() {
-		in2 = new Scanner(System.in);
-		System.out.println("Inserire il nome del prodotto da eliminare");
-		String nomeArticolo = in2.nextLine();
+	private String[] prodottiDef = {"Acqua", "Formaggio", "Carne", "Pane", "Frutta", "Verdura", "Latte", "Yogurt", "Sugo", "Pasta", "Bibite", "Merendine",
+			"Biscotti", "Birra", "Vino", "Surgelati", "Detersivi", "Carta igienica", "Sapone", "Bagnoschiuma", "Shampoo"
+			};
+	private boolean verifica(String nomeProd) {
+		boolean flag=false;
+		for(int i=0; i<prodottiDef.length; i++) {
+			if(nomeProd.equalsIgnoreCase(prodottiDef[i])) {
+				flag=true;
+			}
+		}
+		return flag;
+	}
+	public boolean aggiungiProdotto(String nomeArticolo) {
+		if(verifica(nomeArticolo))	{
+			Prodotto articolo = new Prodotto(nomeArticolo);
+			list.add(articolo);
+			return true;
+		}
+		return false;
+	}
+	
+
+	public boolean rimuoviProdotto(String nomeArticolo) {
+		if(verifica(nomeArticolo)) {
 		Prodotto prodDelete = new Prodotto(nomeArticolo);
 		for (int i=0; i < list.size(); i++) {
 			if(list.get(i).getNome().equalsIgnoreCase(prodDelete.getNome()))
               	list.remove(i);
         }
+		return true;
+		}
+		return false;
 	}
 	
-	public void rimuoviProdotto2(String nomeArticolo) {
-		//Scanner in = new Scanner(System.in);
-		//System.out.println("Inserire il nome del prodotto da eliminare");
-		//String nomeArticolo = in.nextLine();
-		Prodotto prodDelete = new Prodotto(nomeArticolo);
-		for (int i=0; i < list.size(); i++) {
-			if(list.get(i).getNome().equalsIgnoreCase(prodDelete.getNome()))
-              	list.remove(i);
-        }
-	}
 	public void visualizzaLista(){
         System.out.println( list.size()+ " articoli. ");
            for (Prodotto x : list) {
-               System.out.println(x.getNome());
-               
+               System.out.println(x.getNome());    
            }
 	}
 }
+	

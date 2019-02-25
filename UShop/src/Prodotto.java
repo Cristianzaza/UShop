@@ -1,7 +1,7 @@
 public class Prodotto {
 	private String nome;
 	
-	//Costruttore vuoto
+		//Costruttore vuoto
 	public Prodotto() {
 	}
 	//Costruttore con nome
@@ -10,13 +10,12 @@ public class Prodotto {
 	}
 
 	public String getNome() {
-		return nome;
+		return this.nome;
 	}
 
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
 }
 
 

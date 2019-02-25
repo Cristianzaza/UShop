@@ -1,10 +1,13 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
-
+/* ACQUA, FORMAGGIO, CARNE, PANE, FRUTTA, VERDURA, LATTE, YOGURT,
+	SUGO, PASTA, BIBITE, MERENDINE, BISCOTTI, BIRRA, VINO, SURGELATI, 
+	DETERSIVI, CARTA_IGIENICA, IGIENE_PERSONALE; */
 public class main {
+	
 	public static void main(String[] args) {
-    Scanner in = new Scanner(System.in);
+    /*Scanner in = new Scanner(System.in);
     Lista nuovaLista = new Lista();
     int userOpt = 0;
     while (userOpt != 4) {
@@ -27,7 +30,7 @@ public class main {
         if (userOpt == 3) {
         nuovaLista.rimuoviProdotto();
         }
-    }
+    }*/
 }
 }
 
