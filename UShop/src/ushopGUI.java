@@ -142,11 +142,17 @@ public class ushopGUI {
 		{
 		  public void actionPerformed(ActionEvent e)
 		  {
-			nuovaLista.rimuoviProdotto(textField.getText());          
-		    JDialog d = new JDialog(frmUshopShoppingList, "Rimosso", true);
-		    d.setLocationRelativeTo(frmUshopShoppingList);
-		    d.setVisible(true);
-		    textField.setText(null);
+			if(nuovaLista.rimuoviProdotto(textField.getText())) {          
+				JDialog d = new JDialog(frmUshopShoppingList, "Rimosso", true);
+				d.setLocationRelativeTo(frmUshopShoppingList);
+				d.setVisible(true);
+			}
+			else {
+				JDialog e1 = new JDialog(frmUshopShoppingList, "Errore nella rimozione", true);
+				e1.setLocationRelativeTo(frmUshopShoppingList);
+				e1.setVisible(true);
+				}
+			textField.setText(null);
 		  }
 		});
 		
