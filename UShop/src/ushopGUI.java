@@ -31,7 +31,7 @@ import javax.swing.SwingConstants;
 
 public class ushopGUI {
 
-	public JFrame frmUshopShoppingList;
+	private JFrame frmUshopShoppingList;
 	private JTextField textField;
 	Lista nuovaLista = new Lista();
 
