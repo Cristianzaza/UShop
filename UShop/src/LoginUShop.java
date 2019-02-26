@@ -100,9 +100,12 @@ public class LoginUShop {
 					        int flag=0;
 					        while (res.next()) {
 					    	   if (username.equalsIgnoreCase(res.getString("email")) && password.contentEquals(res.getString("password"))) {
-									JOptionPane.showMessageDialog(null, "Login effettuato con successo", "Login effettuato", JOptionPane.PLAIN_MESSAGE);
-									flag=1;
-									break;
+					    		   //JOptionPane.showMessageDialog(null, "Login effettuato con successo", "Login effettuato", JOptionPane.PLAIN_MESSAGE);
+					    		   ushopGUI gui = new ushopGUI();
+					    		   gui.frmUshopShoppingList.setVisible(true);
+					    		   
+					    		   flag=1;
+					    		   break;
 					    	   }
 					      }
 					       if(flag==0){
