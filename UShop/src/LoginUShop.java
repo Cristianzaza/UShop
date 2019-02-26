@@ -16,9 +16,10 @@ import java.awt.event.ActionListener;
 import java.nio.channels.ShutdownChannelGroupException;
 import java.awt.event.ActionEvent;
 import javax.sql.rowset.JdbcRowSet;
+import javax.swing.SwingConstants;
 public class LoginUShop {
 
-	private JFrame frame;
+	protected JFrame frame;
 	private JTextField textUsername;
 	private JPasswordField textPassword;
 
@@ -67,7 +68,8 @@ public class LoginUShop {
 		textPassword.setBounds(143, 136, 116, 22);
 		frame.getContentPane().add(textPassword);
 		
-		JLabel lblUsername = new JLabel("Username");
+		JLabel lblUsername = new JLabel("E-mail");
+		lblUsername.setHorizontalAlignment(SwingConstants.LEFT);
 		lblUsername.setBounds(43, 80, 76, 16);
 		frame.getContentPane().add(lblUsername);
 		
@@ -146,6 +148,7 @@ public class LoginUShop {
 			public void actionPerformed(ActionEvent e) {
 				Registrazione regis = new Registrazione();	
 				regis.frame.setVisible(true);
+				frame.setVisible(false);
 			}
 		});
 		btnRegistrati.setBounds(12, 215, 119, 25);

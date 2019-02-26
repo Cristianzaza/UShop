@@ -34,6 +34,7 @@ public class ushopGUI {
 	public JFrame frmUshopShoppingList;
 	private JTextField textField;
 	Lista nuovaLista = new Lista();
+	private JTextField txtInserireIlNome;
 
 	/**
 	 * Launch the application.
@@ -77,15 +78,46 @@ public class ushopGUI {
 		frmUshopShoppingList.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmUshopShoppingList.getContentPane().setLayout(null);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 432, 253);
-		panel.setBackground(new Color(0, 102, 153));
-		frmUshopShoppingList.getContentPane().add(panel);
-		panel.setLayout(null);
+		JPanel mostraListaPane = new JPanel();
+		mostraListaPane.setBounds(0, 0, 432, 253);
+		frmUshopShoppingList.getContentPane().add(mostraListaPane);
+		mostraListaPane.setLayout(null);
+		mostraListaPane.setVisible(true);
 		
-		JButton btnAggiungiProdotto = new JButton("Aggiungi Prodotto");
-		btnAggiungiProdotto.setBounds(101, 47, 202, 184);
-		panel.add(btnAggiungiProdotto);
+		JTextPane txtpnLista = new JTextPane();
+		txtpnLista.setEditable(false);
+		txtpnLista.setToolTipText("");
+		txtpnLista.setBounds(12, 13, 321, 158);
+		mostraListaPane.add(txtpnLista);
+		
+		JScrollPane jsp = new JScrollPane(txtpnLista, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		mostraListaPane.add(jsp);
+		jsp.setToolTipText("");
+		jsp.setBounds(12, 13, 321, 172);
+		
+		
+		JButton btnRimuoviProdotto = new JButton("Rimuovi");
+		btnRimuoviProdotto.setBounds(334, 214, 86, 39);
+		mostraListaPane.add(btnRimuoviProdotto);
+		
+		JButton btnAggiungiProdotto = new JButton("Aggiungi");
+		btnAggiungiProdotto.setBounds(334, 176, 86, 39);
+		mostraListaPane.add(btnAggiungiProdotto);
+		
+		textField = new JTextField();
+		textField.setBounds(35, 222, 276, 22);
+		mostraListaPane.add(textField);
+		textField.setColumns(10);
+		
+		txtInserireIlNome = new JTextField();
+		txtInserireIlNome.setHorizontalAlignment(SwingConstants.CENTER);
+		txtInserireIlNome.setFont(new Font("Tahoma", Font.BOLD, 12));
+		txtInserireIlNome.setText("Inserire il nome del prodotto");
+		txtInserireIlNome.setBounds(12, 198, 310, 22);
+		txtInserireIlNome.setOpaque(false);
+		txtInserireIlNome.setBorder(null);
+		mostraListaPane.add(txtInserireIlNome);
+		txtInserireIlNome.setColumns(10);
 		btnAggiungiProdotto.addActionListener(new ActionListener()
 		{
 		  public void actionPerformed(ActionEvent e)
@@ -94,6 +126,15 @@ public class ushopGUI {
 		    JDialog d = new JDialog(frmUshopShoppingList, "Aggiunto", true);
 		    d.setLocationRelativeTo(frmUshopShoppingList);
 		    d.setVisible(true);
+		    Document doc = txtpnLista.getDocument();
+	    	try {
+	    		doc.remove(0, doc.getLength());
+	    	} catch (BadLocationException e1) {
+	    		e1.printStackTrace();
+	    	}
+		    for(Prodotto prod : nuovaLista.list) {
+		    	append(prod.getNome()+"\n",txtpnLista);
+		    }
 			}
 			else {
 			JDialog e1 = new JDialog(frmUshopShoppingList, "Errore nell'aggiunta", true);	
@@ -103,41 +144,6 @@ public class ushopGUI {
 			textField.setText(null);
 		  }
 		});
-		
-		JPanel mostraListaPane = new JPanel();
-		mostraListaPane.setBounds(0, 47, 432, 206);
-		frmUshopShoppingList.getContentPane().add(mostraListaPane);
-		mostraListaPane.setLayout(null);
-		mostraListaPane.setVisible(false);
-		
-		JTextPane txtpnLista = new JTextPane();
-		txtpnLista.setToolTipText("");
-		txtpnLista.setBounds(12, 13, 321, 158);
-		mostraListaPane.add(txtpnLista);
-		
-		JScrollPane jsp = new JScrollPane(txtpnLista, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		mostraListaPane.add(jsp);
-		jsp.setToolTipText("");
-		jsp.setBounds(12, 13, 321, 158);
-		jsp.setVisible(true);
-		
-		JButton btnMostraLista = new JButton("Mostra Lista");
-		btnMostraLista.setBounds(0, 47, 101, 184);
-		btnMostraLista.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				mostraListaPane.setVisible(true);
-				panel.setVisible(false);
-				for (Prodotto prod : nuovaLista.list) {
-				append(prod.getNome()+"\n", txtpnLista);
-				}
-			}
-		});
-		panel.add(btnMostraLista);
-		
-		
-		JButton btnRimuoviProdotto = new JButton("Rimuovi Prodotto");
-		btnRimuoviProdotto.setBounds(303, 47, 129, 184);
-		panel.add(btnRimuoviProdotto);
 		btnRimuoviProdotto.addActionListener(new ActionListener()
 		{
 		  public void actionPerformed(ActionEvent e)
@@ -146,6 +152,15 @@ public class ushopGUI {
 				JDialog d = new JDialog(frmUshopShoppingList, "Rimosso", true);
 				d.setLocationRelativeTo(frmUshopShoppingList);
 				d.setVisible(true);
+				Document doc = txtpnLista.getDocument();
+		    	try {
+		    		doc.remove(0, doc.getLength());
+		    	} catch (BadLocationException e1) {
+		    		e1.printStackTrace();
+		    	}
+				for(Prodotto prod : nuovaLista.list) {
+					append(prod.getNome()+"\n",txtpnLista);
+			    }
 			}
 			else {
 				JDialog e1 = new JDialog(frmUshopShoppingList, "Errore nella rimozione", true);
@@ -155,33 +170,6 @@ public class ushopGUI {
 			textField.setText(null);
 		  }
 		});
-		
-		textField = new JTextField();
-		textField.setBounds(0, 231, 432, 22);
-		panel.add(textField);
-		textField.setColumns(10);
-		
-		JLabel lblUshop = new JLabel("UShop");
-		lblUshop.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
-		lblUshop.setHorizontalAlignment(SwingConstants.CENTER);
-		lblUshop.setBounds(0, 0, 432, 47);
-		panel.add(lblUshop);
-		
-		JButton btnIndietro = new JButton("Indietro");
-		btnIndietro.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				mostraListaPane.setVisible(false);
-				panel.setVisible(true);
-				Document doc = txtpnLista.getDocument();
-				try {
-					doc.remove(0, doc.getLength());
-				} catch (BadLocationException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		});
-		btnIndietro.setBounds(345, 134, 85, 37);
-		mostraListaPane.add(btnIndietro);
+		jsp.setVisible(true);
 	}
 }

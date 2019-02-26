@@ -232,8 +232,12 @@ public class Registrazione {
 					        statement.setInt(6, last_id+1);
 					        int data_entered=0;
 					        data_entered = statement.executeUpdate();
-					        if(data_entered>0)
+					        if(data_entered>0) {
 					        	JOptionPane.showMessageDialog(null, "Registrazione avvenuta con successo", "Benvenuto!", JOptionPane.PLAIN_MESSAGE);
+					        	frame.setVisible(false);
+					        	LoginUShop login = new LoginUShop();
+					        	login.frame.setVisible(true);
+					        }
 					        else
 					        	JOptionPane.showMessageDialog(null, "Errore nella registrazione", "Registrazione non avvenuta", JOptionPane.ERROR_MESSAGE);
 					      statement.close();
