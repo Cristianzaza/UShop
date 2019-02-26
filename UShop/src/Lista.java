@@ -77,5 +77,9 @@ public class Lista extends JList<Prodotto>{
 		}
 		return flag;
 	}
+	
+	protected void svuota() {
+			list.removeAll(list);
+	}
 }
 	

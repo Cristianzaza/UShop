@@ -74,12 +74,12 @@ public class ushopGUI {
 		frmUshopShoppingList = new JFrame();
 		frmUshopShoppingList.setTitle("UShop Shopping List");
 		frmUshopShoppingList.setFont(new Font("Arial", Font.PLAIN, 12));
-		frmUshopShoppingList.setBounds(100, 100, 450, 300);
+		frmUshopShoppingList.setBounds(100, 100, 1113, 668);
 		frmUshopShoppingList.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmUshopShoppingList.getContentPane().setLayout(null);
 		
 		JPanel mostraListaPane = new JPanel();
-		mostraListaPane.setBounds(0, 0, 432, 253);
+		mostraListaPane.setBounds(0, 0, 1095, 621);
 		frmUshopShoppingList.getContentPane().add(mostraListaPane);
 		mostraListaPane.setLayout(null);
 		mostraListaPane.setVisible(true);
@@ -87,25 +87,25 @@ public class ushopGUI {
 		JTextPane txtpnLista = new JTextPane();
 		txtpnLista.setEditable(false);
 		txtpnLista.setToolTipText("");
-		txtpnLista.setBounds(12, 13, 321, 158);
+		txtpnLista.setBounds(161, 13, 321, 158);
 		mostraListaPane.add(txtpnLista);
 		
 		JScrollPane jsp = new JScrollPane(txtpnLista, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		mostraListaPane.add(jsp);
 		jsp.setToolTipText("");
-		jsp.setBounds(12, 13, 321, 172);
+		jsp.setBounds(83, 101, 680, 402);
 		
 		
 		JButton btnRimuoviProdotto = new JButton("Rimuovi");
-		btnRimuoviProdotto.setBounds(334, 214, 86, 39);
+		btnRimuoviProdotto.setBounds(775, 561, 200, 47);
 		mostraListaPane.add(btnRimuoviProdotto);
 		
 		JButton btnAggiungiProdotto = new JButton("Aggiungi");
-		btnAggiungiProdotto.setBounds(334, 176, 86, 39);
+		btnAggiungiProdotto.setBounds(775, 503, 200, 47);
 		mostraListaPane.add(btnAggiungiProdotto);
 		
 		textField = new JTextField();
-		textField.setBounds(35, 222, 276, 22);
+		textField.setBounds(487, 547, 276, 22);
 		mostraListaPane.add(textField);
 		textField.setColumns(10);
 		
@@ -113,11 +113,45 @@ public class ushopGUI {
 		txtInserireIlNome.setHorizontalAlignment(SwingConstants.CENTER);
 		txtInserireIlNome.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtInserireIlNome.setText("Inserire il nome del prodotto");
-		txtInserireIlNome.setBounds(12, 198, 310, 22);
+		txtInserireIlNome.setBounds(487, 516, 276, 22);
 		txtInserireIlNome.setOpaque(false);
 		txtInserireIlNome.setBorder(null);
 		mostraListaPane.add(txtInserireIlNome);
 		txtInserireIlNome.setColumns(10);
+		
+		JButton btnItinerario = new JButton("Calcolo \r\nItinerario");
+		btnItinerario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
+		btnItinerario.setBounds(775, 402, 134, 88);
+		mostraListaPane.add(btnItinerario);
+		
+		JButton btnReset = new JButton("Reset");
+		btnReset.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				nuovaLista.svuota();
+				Document doc = txtpnLista.getDocument();
+		    	try {
+		    		doc.remove(0, doc.getLength());
+		    	} catch (BadLocationException e1) {
+		    		e1.printStackTrace();
+		    	}
+			    for(Prodotto prod : nuovaLista.list) {
+			    	append(prod.getNome()+"\n",txtpnLista);
+			    }
+			}
+		});
+		btnReset.setBounds(194, 534, 112, 48);
+		mostraListaPane.add(btnReset);
+		
+		JLabel lblLaTuaLista = new JLabel("La tua lista");
+		lblLaTuaLista.setForeground(new Color(0, 0, 0));
+		lblLaTuaLista.setHorizontalAlignment(SwingConstants.CENTER);
+		lblLaTuaLista.setFont(new Font("Tw Cen MT", Font.BOLD | Font.ITALIC, 32));
+		lblLaTuaLista.setBounds(143, 51, 200, 41);
+		mostraListaPane.add(lblLaTuaLista);
 		btnAggiungiProdotto.addActionListener(new ActionListener()
 		{
 		  public void actionPerformed(ActionEvent e)
