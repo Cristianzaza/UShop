@@ -3,23 +3,21 @@ import java.sql.*;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.mysql.cj.util.TimeUtil;
 
 import javax.swing.JPasswordField;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JSeparator;
 import java.awt.event.ActionListener;
-import java.nio.channels.ShutdownChannelGroupException;
 import java.awt.event.ActionEvent;
-import javax.sql.rowset.JdbcRowSet;
 import javax.swing.SwingConstants;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.Color;
 public class LoginUShop {
 
-	protected JFrame frame;
+	protected JFrame frmUshop;
 	private JTextField textUsername;
 	private JPasswordField textPassword;
 
@@ -31,7 +29,7 @@ public class LoginUShop {
 			public void run() {
 				try {
 					LoginUShop window = new LoginUShop();
-					window.frame.setVisible(true);
+					window.frmUshop.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -50,43 +48,48 @@ public class LoginUShop {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		
-		JLabel lblUshopLogin = new JLabel("UShop Login");
-		lblUshopLogin.setBounds(143, 13, 98, 16);
-		frame.getContentPane().add(lblUshopLogin);
+		frmUshop = new JFrame();
+		frmUshop.setTitle("U-Shop");
+		frmUshop.getContentPane().setBackground(Color.WHITE);
+		frmUshop.setBounds(100, 100, 1113, 668);
+		frmUshop.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmUshop.getContentPane().setLayout(null);
+		frmUshop.setResizable(false);
 		
 		textUsername = new JTextField();
-		textUsername.setBounds(143, 77, 116, 22);
-		frame.getContentPane().add(textUsername);
+		textUsername.setBounds(364, 273, 386, 49);
+		frmUshop.getContentPane().add(textUsername);
 		textUsername.setColumns(10);
 		
 		textPassword = new JPasswordField();
-		textPassword.setBounds(143, 136, 116, 22);
-		frame.getContentPane().add(textPassword);
+		textPassword.setBounds(364, 347, 386, 49);
+		frmUshop.getContentPane().add(textPassword);
 		
 		JLabel lblUsername = new JLabel("E-mail");
-		lblUsername.setHorizontalAlignment(SwingConstants.LEFT);
-		lblUsername.setBounds(43, 80, 76, 16);
-		frame.getContentPane().add(lblUsername);
+		lblUsername.setFont(new Font("Source Sans Pro Light", Font.PLAIN, 38));
+		lblUsername.setHorizontalAlignment(SwingConstants.CENTER);
+		lblUsername.setBounds(103, 273, 249, 49);
+		frmUshop.getContentPane().add(lblUsername);
 		
 		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setBounds(43, 139, 76, 16);
-		frame.getContentPane().add(lblPassword);
+		lblPassword.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPassword.setFont(new Font("Source Sans Pro Light", Font.PLAIN, 38));
+		lblPassword.setBounds(103, 347, 249, 49);
+		frmUshop.getContentPane().add(lblPassword);
 		
-		JButton btnLogin = new JButton("Login");
+		JButton btnLogin = new JButton("Sblocca");
+		btnLogin.setFont(new Font("Source Sans Pro Light", Font.BOLD, 46));
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				@SuppressWarnings("deprecation")
 				String password = textPassword.getText();
 				String username = textUsername.getText();
 				textUsername.setText(null);
 				textPassword.setText(null);
 				try {
 					 // Carichiamo un driver di tipo 1 (bridge jdbc-odbc)
-					         String driver = "com.mysql.cj.jdbc.Driver";
+					         @SuppressWarnings("unused")
+							String driver = "com.mysql.cj.jdbc.Driver";
 					 // Creiamo la stringa di connessione
 					         String url = "jdbc:mysql://localhost:3306/uShop";
 					 // Otteniamo una connessione con username e password
@@ -121,18 +124,11 @@ public class LoginUShop {
 					    }
 			}
 		});
-		btnLogin.setBounds(143, 203, 133, 37);
-		frame.getContentPane().add(btnLogin);
-		
-		JSeparator separator = new JSeparator();
-		separator.setBounds(43, 188, 342, 2);
-		frame.getContentPane().add(separator);
-		
-		JSeparator separator_1 = new JSeparator();
-		separator_1.setBounds(43, 43, 342, 2);
-		frame.getContentPane().add(separator_1);
+		btnLogin.setBounds(374, 455, 313, 143);
+		frmUshop.getContentPane().add(btnLogin);
 		
 		JButton btnReset = new JButton("Reset");
+		btnReset.setFont(new Font("Source Sans Pro Light", Font.PLAIN, 30));
 		btnReset.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textUsername.setText(null);
@@ -140,18 +136,34 @@ public class LoginUShop {
 				
 			}
 		});
-		btnReset.setBounds(288, 215, 116, 25);
-		frame.getContentPane().add(btnReset);
+		btnReset.setBounds(12, 517, 229, 80);
+		frmUshop.getContentPane().add(btnReset);
 		
 		JButton btnRegistrati = new JButton("Registrati");
+		btnRegistrati.setFont(new Font("Source Sans Pro Light", Font.PLAIN, 30));
 		btnRegistrati.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Registrazione regis = new Registrazione();	
-				regis.frame.setVisible(true);
-				frame.setVisible(false);
+				regis.frmUshop.setVisible(true);
+				frmUshop.setVisible(false);
 			}
 		});
-		btnRegistrati.setBounds(12, 215, 119, 25);
-		frame.getContentPane().add(btnRegistrati);
+		btnRegistrati.setBounds(816, 517, 229, 80);
+		frmUshop.getContentPane().add(btnRegistrati);
+		
+		
+		JLabel labelLogo = new JLabel("");
+		labelLogo.setBounds(796, 94, 249, 328);
+		frmUshop.getContentPane().add(labelLogo);
+		
+		Image img = new ImageIcon (this.getClass().getResource("/logo.png")).getImage();
+		labelLogo.setIcon(new ImageIcon(img));
+		
+		JLabel labelLogin = new JLabel("");
+		labelLogin.setBounds(12, 24, 426, 179);
+		frmUshop.getContentPane().add(labelLogin);
+		
+		Image img2 = new ImageIcon (this.getClass().getResource("/loginHeader.png")).getImage();
+		labelLogin.setIcon(new ImageIcon(img2));
 	}
 }

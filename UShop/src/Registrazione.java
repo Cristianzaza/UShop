@@ -5,11 +5,13 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.Image;
+
 import javax.swing.JTextField;
 import java.awt.Color;
 import javax.swing.JPasswordField;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JSeparator;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -22,7 +24,7 @@ import java.awt.event.ActionEvent;
 
 public class Registrazione {
 
-	public JFrame frame;
+	public JFrame frmUshop;
 	public JTextField txtNomeField;
 	public JTextField txtCognomeField;
 	public JTextField txtEmailField;
@@ -40,7 +42,7 @@ public class Registrazione {
 			public void run() {
 				try {
 					Registrazione window = new Registrazione();
-					window.frame.setVisible(true);
+					window.frmUshop.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -59,87 +61,91 @@ public class Registrazione {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 586, 510);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("Registrazione U-Shop");
-		lblNewLabel.setFont(new Font("Tw Cen MT Condensed", Font.BOLD, 26));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(154, 13, 260, 48);
-		frame.getContentPane().add(lblNewLabel);
+		frmUshop = new JFrame();
+		frmUshop.setTitle("U-Shop");
+		frmUshop.getContentPane().setBackground(Color.WHITE);
+		frmUshop.setBackground(Color.WHITE);
+		frmUshop.setBounds(100, 100, 1113, 668);
+		frmUshop.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmUshop.getContentPane().setLayout(null);
+		frmUshop.setResizable(false);
 		
 		JLabel lblNome = new JLabel("Nome*");
-		lblNome.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNome.setFont(new Font("Tw Cen MT Condensed", Font.PLAIN, 18));
+		lblNome.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNome.setFont(new Font("Source Sans Pro Light", Font.BOLD, 22));
 		lblNome.setForeground(Color.BLACK);
-		lblNome.setBounds(12, 89, 125, 26);
-		frame.getContentPane().add(lblNome);
+		lblNome.setBounds(145, 130, 155, 26);
+		frmUshop.getContentPane().add(lblNome);
 		
 		JLabel lblCognome = new JLabel("Cognome*");
-		lblCognome.setHorizontalAlignment(SwingConstants.LEFT);
-		lblCognome.setFont(new Font("Tw Cen MT Condensed", Font.PLAIN, 18));
+		lblCognome.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblCognome.setFont(new Font("Source Sans Pro Light", Font.BOLD, 22));
 		lblCognome.setForeground(Color.BLACK);
-		lblCognome.setBounds(12, 117, 125, 33);
-		frame.getContentPane().add(lblCognome);
+		lblCognome.setBounds(145, 179, 155, 33);
+		frmUshop.getContentPane().add(lblCognome);
 		
 		JLabel lblEmail = new JLabel("Email*");
-		lblEmail.setHorizontalAlignment(SwingConstants.LEFT);
-		lblEmail.setFont(new Font("Tw Cen MT Condensed", Font.PLAIN, 18));
+		lblEmail.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblEmail.setFont(new Font("Source Sans Pro Light", Font.BOLD, 22));
 		lblEmail.setForeground(Color.BLACK);
-		lblEmail.setBounds(12, 156, 125, 26);
-		frame.getContentPane().add(lblEmail);
+		lblEmail.setBounds(145, 232, 155, 26);
+		frmUshop.getContentPane().add(lblEmail);
 		
 		JLabel lblPassword = new JLabel("Password*");
-		lblPassword.setHorizontalAlignment(SwingConstants.LEFT);
-		lblPassword.setFont(new Font("Tw Cen MT Condensed", Font.PLAIN, 18));
+		lblPassword.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblPassword.setFont(new Font("Source Sans Pro Light", Font.BOLD, 22));
 		lblPassword.setForeground(Color.BLACK);
-		lblPassword.setBounds(12, 191, 125, 22);
-		frame.getContentPane().add(lblPassword);
+		lblPassword.setBounds(145, 280, 155, 22);
+		frmUshop.getContentPane().add(lblPassword);
 		
 		JLabel lblConfermaPassword = new JLabel("Conferma Password*");
-		lblConfermaPassword.setHorizontalAlignment(SwingConstants.LEFT);
-		lblConfermaPassword.setFont(new Font("Tw Cen MT Condensed", Font.PLAIN, 18));
-		lblConfermaPassword.setBounds(12, 226, 125, 22);
-		frame.getContentPane().add(lblConfermaPassword);
+		lblConfermaPassword.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblConfermaPassword.setFont(new Font("Source Sans Pro Light", Font.BOLD, 22));
+		lblConfermaPassword.setBounds(93, 330, 207, 22);
+		frmUshop.getContentPane().add(lblConfermaPassword);
 		
 		JLabel lblTelefono = new JLabel("Telefono");
-		lblTelefono.setHorizontalAlignment(SwingConstants.LEFT);
-		lblTelefono.setFont(new Font("Tw Cen MT Condensed", Font.PLAIN, 18));
+		lblTelefono.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblTelefono.setFont(new Font("Source Sans Pro Light", Font.BOLD, 22));
 		lblTelefono.setForeground(Color.BLACK);
-		lblTelefono.setBounds(12, 261, 125, 26);
-		frame.getContentPane().add(lblTelefono);
+		lblTelefono.setBounds(145, 374, 155, 26);
+		frmUshop.getContentPane().add(lblTelefono);
 		
 		txtNomeField = new JTextField();
+		txtNomeField.setFont(new Font("Source Sans Pro Light", Font.PLAIN, 22));
 		txtNomeField.setBackground(Color.WHITE);
 		txtNomeField.setForeground(Color.BLACK);
-		txtNomeField.setBounds(137, 93, 277, 22);
-		frame.getContentPane().add(txtNomeField);
+		txtNomeField.setBounds(302, 130, 520, 33);
+		frmUshop.getContentPane().add(txtNomeField);
 		txtNomeField.setColumns(10);
 		
 		txtCognomeField = new JTextField();
-		txtCognomeField.setBounds(137, 124, 277, 22);
-		frame.getContentPane().add(txtCognomeField);
+		txtCognomeField.setFont(new Font("Source Sans Pro Light", Font.PLAIN, 22));
+		txtCognomeField.setBounds(302, 180, 520, 33);
+		frmUshop.getContentPane().add(txtCognomeField);
 		txtCognomeField.setColumns(10);
 		
 		txtEmailField = new JTextField();
-		txtEmailField.setBounds(137, 160, 277, 22);
-		frame.getContentPane().add(txtEmailField);
+		txtEmailField.setFont(new Font("Source Sans Pro Light", Font.PLAIN, 22));
+		txtEmailField.setBounds(302, 232, 520, 33);
+		frmUshop.getContentPane().add(txtEmailField);
 		txtEmailField.setColumns(10);
 		
 		txtTelefonoField = new JTextField();
-		txtTelefonoField.setBounds(137, 265, 277, 22);
-		frame.getContentPane().add(txtTelefonoField);
+		txtTelefonoField.setFont(new Font("Source Sans Pro Light", Font.PLAIN, 22));
+		txtTelefonoField.setBounds(302, 374, 520, 33);
+		frmUshop.getContentPane().add(txtTelefonoField);
 		txtTelefonoField.setColumns(10);
 		
 		txtPasswordField = new JPasswordField();
-		txtPasswordField.setBounds(137, 195, 277, 22);
-		frame.getContentPane().add(txtPasswordField);
+		txtPasswordField.setFont(new Font("Source Sans Pro Light", Font.PLAIN, 22));
+		txtPasswordField.setBounds(302, 278, 520, 33);
+		frmUshop.getContentPane().add(txtPasswordField);
 		
 		txtPassword2Field = new JPasswordField();
-		txtPassword2Field.setBounds(137, 230, 277, 22);
-		frame.getContentPane().add(txtPassword2Field);
+		txtPassword2Field.setFont(new Font("Source Sans Pro Light", Font.PLAIN, 22));
+		txtPassword2Field.setBounds(302, 328, 520, 33);
+		frmUshop.getContentPane().add(txtPassword2Field);
 		
 		JButton btnRegistrati = new JButton("Registrati");
 		btnRegistrati.addActionListener(new ActionListener() {
@@ -195,7 +201,8 @@ public class Registrazione {
 				if(flagControllo==0) {	
 				try {
 					// Carichiamo un driver di tipo 1 (bridge jdbc-odbc)
-					        String driver = "com.mysql.cj.jdbc.Driver";
+					        @SuppressWarnings("unused")
+							String driver = "com.mysql.cj.jdbc.Driver";
 					 // Creiamo la stringa di connessione
 					        String url = "jdbc:mysql://localhost:3306/uShop";
 					 // Otteniamo una connessione con username e password
@@ -234,9 +241,9 @@ public class Registrazione {
 					        data_entered = statement.executeUpdate();
 					        if(data_entered>0) {
 					        	JOptionPane.showMessageDialog(null, "Registrazione avvenuta con successo", "Benvenuto!", JOptionPane.PLAIN_MESSAGE);
-					        	frame.setVisible(false);
+					        	frmUshop.setVisible(false);
 					        	LoginUShop login = new LoginUShop();
-					        	login.frame.setVisible(true);
+					        	login.frmUshop.setVisible(true);
 					        }
 					        else
 					        	JOptionPane.showMessageDialog(null, "Errore nella registrazione", "Registrazione non avvenuta", JOptionPane.ERROR_MESSAGE);
@@ -252,9 +259,9 @@ public class Registrazione {
 					JOptionPane.showMessageDialog(null, "Controllare i dati inseriti", "Dati immessi non validi", JOptionPane.ERROR_MESSAGE);
 			}
 		});
-		btnRegistrati.setFont(new Font("Tw Cen MT Condensed", Font.PLAIN, 18));
-		btnRegistrati.setBounds(191, 366, 186, 63);
-		frame.getContentPane().add(btnRegistrati);
+		btnRegistrati.setFont(new Font("Source Sans Pro Semibold", Font.PLAIN, 40));
+		btnRegistrati.setBounds(395, 471, 283, 114);
+		frmUshop.getContentPane().add(btnRegistrati);
 		
 		JButton btnReset = new JButton("RESET");
 		btnReset.addActionListener(new ActionListener() {
@@ -267,17 +274,41 @@ public class Registrazione {
 				txtTelefonoField.setText(null);
 			}
 		});
-		btnReset.setFont(new Font("Tw Cen MT Condensed", Font.PLAIN, 18));
-		btnReset.setBounds(412, 396, 97, 33);
-		frame.getContentPane().add(btnReset);
-		
-		JSeparator separator = new JSeparator();
-		separator.setBounds(12, 74, 544, 2);
-		frame.getContentPane().add(separator);
+		btnReset.setFont(new Font("Source Sans Pro Semibold", Font.PLAIN, 30));
+		btnReset.setBounds(829, 489, 186, 96);
+		frmUshop.getContentPane().add(btnReset);
 		
 		JLabel lblICampiContrassegnati = new JLabel("I campi contrassegnati con * sono obbligatori");
-		lblICampiContrassegnati.setBounds(215, 300, 294, 16);
-		frame.getContentPane().add(lblICampiContrassegnati);
+		lblICampiContrassegnati.setFont(new Font("Source Sans Pro Semibold", Font.PLAIN, 18));
+		lblICampiContrassegnati.setBounds(446, 420, 376, 38);
+		frmUshop.getContentPane().add(lblICampiContrassegnati);
+		
+		JButton button = new JButton("INDIETRO");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmUshop.setVisible(false);
+			}
+		});
+		button.setFont(new Font("Source Sans Pro Semibold", Font.PLAIN, 30));
+		button.setBounds(65, 489, 186, 96);
+		frmUshop.getContentPane().add(button);
+		
+		JLabel labelLogo = new JLabel("");
+		labelLogo.setBounds(846, 102, 249, 328);
+		frmUshop.getContentPane().add(labelLogo);
+		Image img = new ImageIcon (this.getClass().getResource("/logo.png")).getImage();
+		labelLogo.setIcon(new ImageIcon(img));
+		
+		JLabel labelRegis = new JLabel("");
+		labelRegis.setBounds(51, 13, 128, 128);
+		frmUshop.getContentPane().add(labelRegis);
+		Image img2 = new ImageIcon (this.getClass().getResource("/signup-icon.png")).getImage();
+		labelRegis.setIcon(new ImageIcon(img2));
+		
+		JLabel lblRegistrazione = new JLabel("Registrazione");
+		lblRegistrazione.setFont(new Font("Source Sans Pro Semibold", Font.PLAIN, 50));
+		lblRegistrazione.setBounds(179, 36, 376, 69);
+		frmUshop.getContentPane().add(lblRegistrazione);
 		
 		}
 }

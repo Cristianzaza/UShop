@@ -1,10 +1,5 @@
-import java.util.Scanner;
-
 import javax.swing.JList;
-
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
 public class Lista extends JList<Prodotto>{
 	/**
@@ -17,8 +12,8 @@ public class Lista extends JList<Prodotto>{
 		list = new ArrayList <Prodotto> ();	
 	}
 	
-	private String[] prodottiDef = {"Acqua", "Formaggio", "Carne", "Pane", "Frutta", "Verdura", "Latte", "Yogurt", "Sugo", "Pasta", "Bibite", "Merendine",
-			"Biscotti", "Birra", "Vino", "Surgelati", "Detersivi", "Carta igienica", "Sapone", "Bagnoschiuma", "Shampoo"
+	protected String[] prodottiDef = {"Acqua", "Formaggio", "Carne", "Pane", "Frutta", "Verdura", "Latte", "Yogurt", "Sugo", "Pasta", "Bibite", "Merendine",
+			"Biscotti", "Birra", "Vino", "Surgelati", "Detersivi", "Carta igienica", "Sapone", "Bagnoschiuma", "Shampoo", "Mozzarella"
 	};
 	
 	//verifica che il prodotto inserito sia presente nel negozio
