@@ -108,7 +108,7 @@ public class LoginUShop {
 					    		   //JOptionPane.showMessageDialog(null, "Login effettuato con successo", "Login effettuato", JOptionPane.PLAIN_MESSAGE);
 					    		   ushopGUI gui = new ushopGUI();
 					    		   gui.frmUshopShoppingList.setVisible(true);
-					    		   
+					    		   frmUshop.setVisible(false);
 					    		   flag=1;
 					    		   break;
 					    	   }
@@ -156,14 +156,14 @@ public class LoginUShop {
 		labelLogo.setBounds(796, 94, 249, 328);
 		frmUshop.getContentPane().add(labelLogo);
 		
-		Image img = new ImageIcon (this.getClass().getResource("/logo.png")).getImage();
+		Image img = new ImageIcon (this.getClass().getResource("logo.png")).getImage();
 		labelLogo.setIcon(new ImageIcon(img));
 		
 		JLabel labelLogin = new JLabel("");
 		labelLogin.setBounds(12, 24, 426, 179);
 		frmUshop.getContentPane().add(labelLogin);
 		
-		Image img2 = new ImageIcon (this.getClass().getResource("/loginHeader.png")).getImage();
+		Image img2 = new ImageIcon (this.getClass().getResource("loginHeader.png")).getImage();
 		labelLogin.setIcon(new ImageIcon(img2));
 	}
 }

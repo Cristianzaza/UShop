@@ -163,6 +163,8 @@ public class ushopGUI {
 		btnLogout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frmUshopShoppingList.setVisible(false);
+				LoginUShop login = new LoginUShop();
+				login.frmUshop.setVisible(true);
 			}
 		});
 		btnLogout.setBounds(83, 516, 112, 47);
